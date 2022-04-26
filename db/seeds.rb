@@ -10,6 +10,7 @@ require 'faker'
 
 puts "Cleaning database..."
 Restaurant.destroy_all
+Review.destroy_all
 
 puts "Creating restaurants..."
 
@@ -23,14 +24,23 @@ puts "Creating restaurants..."
 
 category = ["chinese", "italian", "japanese", "french", "belgian"]
 
-100.times do |i|
+100.times do
   restaurant = Restaurant.create!({
     name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.cell_phone,
     category: category.sample
   })
-  puts "#{i} - #{restaurant.name} #{restaurant.phone_number} #{restaurant.category}"
+  puts "#{restaurant.name} #{restaurant.phone_number} #{restaurant.category}"
+end
+
+356.times do
+  review = Review.create!({
+    rating: rand(1..5),
+    content: Faker::Restaurant.review,
+    restaurant_id: rand(1..100)
+  })
+  puts "#{review.rating} #{review.content} #{review.restaurant_id}"
 end
 
 

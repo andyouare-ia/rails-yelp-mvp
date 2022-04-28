@@ -1,0 +1,10 @@
+<h2>Add a review</h2>
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating %>
+  <% f.label :restaurant_id %>
+  <% f.number_field :restaurant_id %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
